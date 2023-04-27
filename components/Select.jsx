@@ -5,8 +5,12 @@ export default function Select({ defaultValue }) {
     <>
       <select>
         <option value="">{defaultValue}</option>
+        {/* default value */}
         <option value="fun">fun todo</option>
-        <option value="boring">boring todo</option>
+        <option value="boring" selected>
+          boring todo
+        </option>
+        {/* selected prop */}
         <option value="new">new todo</option>
       </select>
     </>
