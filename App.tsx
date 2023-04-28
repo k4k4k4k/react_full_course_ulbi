@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import Form from './components/Form';
 import PostAdder from './components/PostAdder';
 import Select from './components/Select';
+import Input from './components/Input';
 
 export default function App() {
   const inputRef = useRef();
@@ -12,6 +13,7 @@ export default function App() {
     { id: 2, title: 'learn to play the piano', amount: 1, hours: 100 },
     { id: 3, title: 'drink coffee', amount: 2, hours: 0.5 },
   ]);
+  const [selectedSort, setSelectedSort] = useState('');
   const deletePost = (id: number) => {
     setPosts(posts.filter((post) => post.id !== id));
   };
@@ -28,8 +30,9 @@ export default function App() {
     hours: 0,
   });
   const sortPosts = (sort) => {
-    setPosts()
-  }
+    setSelectedSort(sort);
+    setPosts([...posts].sort((a, b) => a[sort] - b[sort]));
+  };
 
   return (
     <div>
@@ -38,12 +41,14 @@ export default function App() {
           // { title: 'fun todo', value: 'fun' },
           // { title: 'new todo', value: 'new' },
           // { title: 'boring todo', value: 'boring' },
-          { title: 'по названию', value: 'name' },
-          { title: 'по количеству', value: 'number' },
+          { title: 'по названию', value: 'title' },
+          { title: 'по количеству', value: 'amount' },
         ]}
         defaultValue={'sort'}
         sortPosts={sortPosts}
+        value={selectedSort}
       />
+      <Input />
       {/* <PostAdder
         setNewPost={setNewPost}
         newPost={newPost}
