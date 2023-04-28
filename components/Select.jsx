@@ -1,17 +1,25 @@
 import * as React from 'react';
+import {useRef} from 'react'
 
-export default function Select({ defaultValue }) {
+export default function Select({ defaultValue, options, sortPosts }) {
+  const ref = useRef()
   return (
     <>
+      <select
+        onChange={(sort) => console.log(sort.target.value)}
+        // value={'name'}
+        onClick={()=>console.log(ref.current.value)} 
+        ref={ref}
+      >
+        <option>{defaultValue}</option>
+        {options.map((option) => (
+          <option value={option.value} key={option.value}>
+            {option.title}
+          </option>
+        ))}
+      </select>
       <select>
-        <option value="">{defaultValue}</option>
-        {/* default value */}
-        <option value="fun">fun todo</option>
-        <option value="boring" selected>
-          boring todo
-        </option>
-        {/* selected prop */}
-        <option value="new">new todo</option>
+        <option>lll</option>
       </select>
     </>
   );

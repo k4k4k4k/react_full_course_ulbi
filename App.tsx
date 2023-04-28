@@ -27,9 +27,23 @@ export default function App() {
     amount: 0,
     hours: 0,
   });
+  const sortPosts = (sort) => {
+    setPosts()
+  }
+
   return (
     <div>
-      <Select />
+      <Select
+        options={[
+          // { title: 'fun todo', value: 'fun' },
+          // { title: 'new todo', value: 'new' },
+          // { title: 'boring todo', value: 'boring' },
+          { title: 'по названию', value: 'name' },
+          { title: 'по количеству', value: 'number' },
+        ]}
+        defaultValue={'sort'}
+        sortPosts={sortPosts}
+      />
       {/* <PostAdder
         setNewPost={setNewPost}
         newPost={newPost}
